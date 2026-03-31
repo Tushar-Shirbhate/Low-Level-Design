@@ -14,14 +14,35 @@ class BookPDP implements Prototype {
     private String title;
     private String author;
     private String publisher;
+    private String category;
+    private String language;
+    private String format;
 
-    public BookPDP(String title, String author, String publisher) {
+    public BookPDP(String title, String author, String publisher,
+                    String category, String language, String format) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
+        this.category = category;
+        this.language = language;
+        this.format = format;
     }
 
-    // Setter methods to modify the cloned object's properties
+    // Copy constructor
+    public BookPDP(BookPDP other) {
+        this.title = other.title;
+        this.author = other.author;
+        this.publisher = other.publisher;
+        this.category = other.category;
+        this.language = other.language;
+        this.format = other.format;
+    }
+
+    @Override
+    public Prototype clone(){
+        return new BookPDP(this);
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -34,9 +55,16 @@ class BookPDP implements Prototype {
         this.publisher = publisher;
     }
 
-    @Override
-    public Prototype clone() {
-        return new BookPDP(this.title, this.author, this.publisher);
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public void setFormat(String format) {
+        this.format = format;
     }
 
     @Override
@@ -45,6 +73,9 @@ class BookPDP implements Prototype {
                 "title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", publisher='" + publisher + '\'' +
+                ", category='" + category + '\'' +
+                ", language='" + language + '\'' +
+                ", format='" + format + '\'' +
                 '}';
     }
 }
@@ -52,14 +83,16 @@ class BookPDP implements Prototype {
 public class PrototypeDP {
     public static void main(String[] args) {
         // Initializing a prototype book
-        BookPDP book1 = new BookPDP("Design Patterns", "Erich Gamma", "Addison-Wesley");
-        System.out.println(book1.toString());
+        BookPDP book1 = new BookPDP("Clean Code", "Robert C. Martin", "Prentice Hall", "Programming", "English", "Paperback");
+        System.out.println(book1);
 
         // Creating a new book by cloning the prototype and modifying it
         BookPDP book2 = (BookPDP) book1.clone();
-        book2.setTitle("The Java Programming Language");
-        book2.setAuthor("Ken Arnold");
-        System.out.println(book2.toString());
+        book2.setTitle("Effective Java");
+        book2.setAuthor("Joshua Bloch");
+        book2.setPublisher("Addison-Wesley");
+        book2.setFormat("Hardcover");
+        System.out.println(book2);
 
     }
 }
