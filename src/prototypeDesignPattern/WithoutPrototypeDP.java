@@ -1,11 +1,11 @@
 package prototypeDesignPattern;
 
-class Book {
+class BookWPDP {
     private String title;
     private String author;
     private String publisher;
 
-    public Book(String title, String author, String publisher){
+    public BookWPDP(String title, String author, String publisher){
         this.title = title;
         this.author = author;
         this.publisher = publisher;
@@ -13,7 +13,7 @@ class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
+        return "BookWPDP{" +
                 "title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", publisher='" + publisher + '\'' +
@@ -22,16 +22,10 @@ class Book {
 }
 public class WithoutPrototypeDP {
     public static void main(String[] args){
-        Book book1 = new Book("Atomic Habits", "James Clear", "Avery Publishing");
+        BookWPDP book1 = new BookWPDP("Design Patterns", "Erich Gamma", "Addison-Wesley");
         System.out.println(book1.toString());
 
-        Book book2 = new Book("Clean Code", "Robert C. Martin", "Prentice Hall");
+        BookWPDP book2 = new BookWPDP("The Java Programming Language", "Ken Arnold", "Addison-Wesley");
         System.out.println(book2.toString());
-
-        Book book3 = new Book("Design Patterns", "Erich Gamma", "Addison-Wesley");
-        System.out.println(book3.toString());
-
-        Book book4 = new Book("The Java Programming Language", "Ken Arnold", "Addison-Wesley");
-        System.out.println(book4.toString());
     }
 }
