@@ -41,6 +41,9 @@ class PaymentContext{
     }
 }
 public class StrategyDP {
+    /*
+        http://chatgpt.com/c/69cbee9d-7c58-8321-b4aa-919822011ec1
+    */
     public static void main(String[] args){
         // Creating payment strategies
         PaymentStrategy creditCardPayment = new CreditCardPayment();

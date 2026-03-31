@@ -81,6 +81,9 @@ class BookPDP implements Prototype {
 }
 
 public class PrototypeDP {
+    /*
+        https://chatgpt.com/c/69c97458-3334-8324-be4f-69acb0d686e8
+     */
     public static void main(String[] args) {
         // Initializing a prototype book
         BookPDP book1 = new BookPDP("Clean Code", "Robert C. Martin", "Prentice Hall", "Programming", "English", "Paperback");
