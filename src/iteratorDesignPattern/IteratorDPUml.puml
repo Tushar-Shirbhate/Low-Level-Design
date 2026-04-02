@@ -1,0 +1,82 @@
+@startuml
+' Hide the word "class" for classes
+hide empty members
+
+' Define classes and interfaces
+class BookIDP {
+    - String title
+    - boolean premium
+    + BookIDP(String title, boolean premium)
+}
+
+interface BookIterator {
+    + boolean hasNext()
+    + BookIDP next()
+}
+
+class NormalIterator {
+    - List<BookIDP> books
+    - int index
+    + NormalIterator(List<BookIDP> books)
+    + boolean hasNext()
+    + BookIDP next()
+}
+
+class ReverseIterator {
+    - List<BookIDP> books
+    - int index
+    + ReverseIterator(List<BookIDP> books)
+    + boolean hasNext()
+    + BookIDP next()
+}
+
+class PremiumIterator {
+    - List<BookIDP> books
+    - int index
+    + PremiumIterator(List<BookIDP> books)
+    + boolean hasNext()
+    + BookIDP next()
+}
+
+interface BookCollection {
+    + BookIterator createIterator(String type)
+}
+
+class Library {
+    - List<BookIDP> books
+    + void addBook(BookIDP book)
+    + BookIterator createIterator(String type)
+}
+
+class IteratorDP {
+    + {static} void main(String[] args)
+}
+
+' Define relationships
+
+' Inheritance/Implementation
+BookIterator <|.. NormalIterator
+BookIterator <|.. ReverseIterator
+BookIterator <|.. PremiumIterator
+BookCollection <|.. Library
+
+' Associations
+' Library contains BookIDP instances
+Library "1" *-- "0..*" BookIDP : contains
+
+' Iterators operate on a collection of BookIDP
+NormalIterator "1" o-- "1" BookIDP : iterates over
+ReverseIterator "1" o-- "1" BookIDP : iterates over
+PremiumIterator "1" o-- "1" BookIDP : iterates over
+
+' Dependencies
+' Library creates BookIterator instances
+Library ..> BookIterator : creates
+
+' BookIterator returns BookIDP instances
+BookIterator ..> BookIDP : returns
+
+' The main class uses the Library
+IteratorDP ..> Library : uses
+
+@enduml
