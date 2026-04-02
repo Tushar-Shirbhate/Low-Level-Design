@@ -1,0 +1,58 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+' Interfaces
+interface Observer {
+    + update(temperature: float)
+}
+
+interface Subject {
+    + registerObserver(observer: Observer)
+    + removeObserver(observer: Observer)
+    + notifyObservers()
+}
+
+' Concrete Subject
+class WeatherStation {
+    - observers: List<Observer>
+    - temperature: float
+    --
+    + registerObserver(observer: Observer)
+    + removeObserver(observer: Observer)
+    + notifyObservers()
+    + setTemperature(temperature: float)
+}
+
+' Concrete Observers
+class PhoneDisplay {
+    --
+    + update(temperature: float)
+}
+
+class TvDisplay {
+    --
+    + update(temperature: float)
+}
+
+' Main Application Class
+class ObserverDP {
+    --
+    + main(args: String[]) {static}
+}
+
+' Relationships
+
+' Implementation relationships
+Subject <|.. WeatherStation
+Observer <|.. PhoneDisplay
+Observer <|.. TvDisplay
+
+' Aggregation relationship: WeatherStation aggregates Observers
+WeatherStation "1" o-- "N" Observer : notifies >
+
+' Dependency relationships: ObserverDP uses other classes
+ObserverDP ..> WeatherStation
+ObserverDP ..> PhoneDisplay
+ObserverDP ..> TvDisplay
+
+@enduml
