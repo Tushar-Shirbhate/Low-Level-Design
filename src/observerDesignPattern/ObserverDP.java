@@ -19,7 +19,9 @@ class WeatherStation implements Subject{
 
     @Override
     public void registerObserver(Observer observer) {
-        observers.add(observer);
+        if (observer != null && !observers.contains(observer)) {
+            observers.add(observer);
+        }
     }
 
     @Override
