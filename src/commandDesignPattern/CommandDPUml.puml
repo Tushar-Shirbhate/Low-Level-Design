@@ -1,0 +1,66 @@
+@startuml
+    class Command {
+        <<interface>>
+        +execute() void
+    }
+
+    class LightCDP {
+        +turnOn() void
+        +turnOff() void
+    }
+
+    class FanCDP {
+        +turnOn() void
+        +turnOff() void
+    }
+
+    class LightOnCommand {
+        -lightCDP: LightCDP
+        +LightOnCommand(lightCDP: LightCDP)
+        +execute() void
+    }
+
+    class LightOffCommand {
+        -lightCDP: LightCDP
+        +LightOffCommand(lightCDP: LightCDP)
+        +execute() void
+    }
+
+    class FanOnCommand {
+        -fanCDP: FanCDP
+        +FanOnCommand(fanCDP: FanCDP)
+        +execute() void
+    }
+
+    class FanOffCommand {
+        -fanCDP: FanCDP
+        +FanOffCommand(fanCDP: FanCDP)
+        +execute() void
+    }
+
+    class RemoteControlCDP {
+        -command: Command
+        +setCommand(command: Command) void
+        +pressButton() void
+    }
+
+    class CommandDP {
+        +main(args: String[])$ void
+    }
+
+    Command <|.. LightOnCommand : implements
+    Command <|.. LightOffCommand : implements
+    Command <|.. FanOnCommand : implements
+    Command <|.. FanOffCommand : implements
+
+    LightOnCommand --> LightCDP : uses
+    LightOffCommand --> LightCDP : uses
+    FanOnCommand --> FanCDP : uses
+    FanOffCommand --> FanCDP : uses
+
+    RemoteControlCDP o-- Command : aggregates
+
+    CommandDP ..> RemoteControlCDP : creates
+    CommandDP ..> LightOnCommand : creates
+    CommandDP ..> LightCDP : creates
+@enduml
