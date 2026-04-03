@@ -1,0 +1,28 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface ChatMediator {
+    +registerUser(user: UserMDP): void
+    +sendMessage(sender: UserMDP, message: String): void
+}
+
+class ChatRoom {
+    -users: List<UserMDP>
+    +ChatRoom()
+    +registerUser(user: UserMDP): void
+    +sendMessage(sender: UserMDP, message: String): void
+}
+
+class UserMDP {
+    -name: String
+    -chatMediator: ChatMediator
+    +UserMDP(name: String, chatMediator: ChatMediator)
+    +sendMessage(message: String): void
+    +receiveMessage(sender: UserMDP, message: String): void
+}
+
+ChatMediator <|.. ChatRoom
+ChatRoom "1" o-- "*" UserMDP : manages
+UserMDP "*" --> "1" ChatMediator : uses
+
+@enduml
