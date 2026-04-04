@@ -1,0 +1,36 @@
+@startuml
+
+    class ATMState {
+        <<interface>>
+        +next(ATMContext context)
+    }
+
+    class NoCardState {
+        +next(ATMContext context)
+    }
+
+    class CardInsertedState {
+        +next(ATMContext context)
+    }
+
+    class PinVerifiedState {
+        +next(ATMContext context)
+    }
+
+    class ATMContext {
+        -ATMState state
+        +ATMContext()
+        +next()
+        +setState(ATMState state)
+    }
+
+    class StateDP {
+        +main(String[] args)
+    }
+
+    ATMState <|.. NoCardState : implements
+    ATMState <|.. CardInsertedState : implements
+    ATMState <|.. PinVerifiedState : implements
+    ATMContext o-- ATMState : aggregation (has-a)
+    StateDP ..> ATMContext : uses
+@enduml
