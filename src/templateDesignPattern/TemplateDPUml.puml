@@ -1,0 +1,28 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+abstract class FoodOrderTemplate {
+    + processOrder(): void
+    - takeOrder(): void
+    - packItem(): void
+    - deliverItem(): void
+    {abstract} # prepareItem(): void
+}
+
+class BurgerOrderTemplate {
+    # prepareItem(): void
+}
+
+class PizzaOrderTemplate {
+    # prepareItem(): void
+}
+
+class TemplateDP {
+    + {static} main(args: String[]): void
+}
+
+FoodOrderTemplate <|-- BurgerOrderTemplate
+FoodOrderTemplate <|-- PizzaOrderTemplate
+TemplateDP ..> FoodOrderTemplate : uses
+
+@enduml
