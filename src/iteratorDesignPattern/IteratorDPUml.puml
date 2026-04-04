@@ -1,6 +1,7 @@
 @startuml
 ' Hide the word "class" for classes
 hide empty members
+skinparam classAttributeIconSize 0
 
 ' Define classes and interfaces
 class BookIDP {
