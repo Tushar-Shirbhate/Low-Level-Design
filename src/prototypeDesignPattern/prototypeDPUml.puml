@@ -1,0 +1,34 @@
+@startuml
+
+interface Prototype {
+    + clone() : Prototype
+}
+
+class BookPDP {
+    - title : String
+    - author : String
+    - publisher : String
+    - category : String
+    - language : String
+    - format : String
+    + BookPDP(title: String, author: String, publisher: String, category: String, language: String, format: String)
+    + BookPDP(other: BookPDP)
+    + clone() : Prototype
+    + setTitle(title: String) : void
+    + setAuthor(author: String) : void
+    + setPublisher(publisher: String) : void
+    + setCategory(category: String) : void
+    + setLanguage(language: String) : void
+    + setFormat(format: String) : void
+    + toString() : String
+}
+
+class PrototypeDP {
+    + {static} main(args: String[]) : void
+}
+
+Prototype <|.. BookPDP
+PrototypeDP ..> BookPDP : uses
+PrototypeDP ..> Prototype : uses
+
+@enduml
