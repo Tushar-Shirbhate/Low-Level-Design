@@ -30,6 +30,9 @@ class BookWPDP {
                 '}';
     }
 }
+/*
+    BookWPDP : WPDP means Without Prototype Design Pattern
+ */
 public class WithoutPrototypeDP {
     public static void main(String[] args){
         BookWPDP book1 = new BookWPDP("Clean Code", "Robert C. Martin", "Prentice Hall", "Programming", "English", "Paperback");

@@ -1,7 +1,7 @@
 package prototypeDesignPattern;
 
 /**
- * Prototype interface defines the cloning method.
+ * Step 1: Prototype interface defines the cloning method.
  */
 interface Prototype {
     Prototype clone();
